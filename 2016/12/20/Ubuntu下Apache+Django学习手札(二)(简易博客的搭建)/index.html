@@ -1,0 +1,785 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="搭建完了Django+Apache的服务器端,就是开始写代码的时候了,这次的小目标是写一个简陋的博客,简陋到只有3个页面: 首页,目录页,详情页. 前台就是在网上随意找了一套模板，后台就是Django+Apache+MySQL啦.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下Apache+Django学习手札 (二) (简易博客的搭建)">
+<meta property="og:url" content="http://rockmeroll.cn/2016/12/20/Ubuntu下Apache+Django学习手札(二)(简易博客的搭建)/index.html">
+<meta property="og:site_name" content="RM&#39;s Blog">
+<meta property="og:description" content="搭建完了Django+Apache的服务器端,就是开始写代码的时候了,这次的小目标是写一个简陋的博客,简陋到只有3个页面: 首页,目录页,详情页. 前台就是在网上随意找了一套模板，后台就是Django+Apache+MySQL啦.">
+<meta property="og:image" content="http://rockmeroll.cn/pic/201701261323.png">
+<meta property="og:image" content="http://rockmeroll.cn/pic/201701261324.png">
+<meta property="og:image" content="http://rockmeroll.cn/pic/201701261325.png">
+<meta property="og:updated_time" content="2017-05-06T03:04:12.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu下Apache+Django学习手札 (二) (简易博客的搭建)">
+<meta name="twitter:description" content="搭建完了Django+Apache的服务器端,就是开始写代码的时候了,这次的小目标是写一个简陋的博客,简陋到只有3个页面: 首页,目录页,详情页. 前台就是在网上随意找了一套模板，后台就是Django+Apache+MySQL啦.">
+<meta name="twitter:image" content="http://rockmeroll.cn/pic/201701261323.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://rockmeroll.cn/2016/12/20/Ubuntu下Apache+Django学习手札(二)(简易博客的搭建)/"/>
+
+
+
+
+
+  <title>Ubuntu下Apache+Django学习手札 (二) (简易博客的搭建) | RM's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RM's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2016/12/20/Ubuntu下Apache+Django学习手札(二)(简易博客的搭建)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rockmeroll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RM's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu下Apache+Django学习手札 (二) (简易博客的搭建)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T14:30:00+08:00">
+                2016-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>搭建完了Django+Apache的服务器端,就是开始写代码的时候了,这次的小目标是写一个简陋的博客,简陋到只有3个页面: 首页,目录页,详情页. 前台就是在网上随意找了一套模板，后台就是Django+Apache+MySQL啦.</p>
+<a id="more"></a>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>mysite/
+├── blog
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations        //连接数据库模块
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py         //数据结构类集合, 类似于Java中的Bean
+│   ├── __pycache__
+│   ├── static            //静态文件目录 (js,css,图片,字体等)
+│   │   ├── assets
+│   │   │   ├── css
+│   │   │   ├── fonts
+│   │   │   ├── js
+│   │   │   └── sass
+│   │   └── images
+│   ├── templates        //模板目录,即Html文件的目录
+│   ├── templatetags     //自定义模板,详细的下面会讲
+│   ├── tests.py
+│   └── views.py         //逻辑处理
+├── db.sqlite3
+├── manage.py            //管理工具
+└── mysite
+    ├── __init__.py
+    ├── __init__.pyc
+    ├── __pycache__
+    ├── settings.py   //参数设置
+    ├── settings.pyc
+    ├── urls.py       //域名管理
+    └── wsgi.py       //wsgi配置
+</code></pre><h2 id="一-首先是前台"><a href="#一-首先是前台" class="headerlink" title="一.首先是前台"></a>一.首先是前台</h2><p>Django的前台页面存放在 <strong>templates</strong> 文件夹里,Django中比较重要的一个前台机制就是 <strong>块</strong>(Bolck):</p>
+<h3 id="Block"><a href="#Block" class="headerlink" title="Block:"></a>Block:</h3><p>块定义方法:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;% block 块名称 %&#125;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 块详细内容 --&gt;</span></div><div class="line"></div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure></p>
+<p>定义了block之后,在继承这个模板的子类模板中,可以通过覆盖父类中的block来显示子页面需要显示的内容,就以网页的标题为例:</p>
+<h4 id="base-html"><a href="#base-html" class="headerlink" title="base.html:"></a>base.html:</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span></div><div class="line">&#123;% block title %&#125;默认标题&#123;% endblock %&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html:"></a>index.html:</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;% extends 'base.html' %&#125;</div><div class="line">&#123;% block title %&#125;这里是首页&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<p>利用block可以方便快捷的完成很多前台的工作,但是我个人觉得..前台代码的复用性可能有点差…</p>
+<h3 id="模块中接受后台的参数"><a href="#模块中接受后台的参数" class="headerlink" title="模块中接受后台的参数:"></a>模块中接受后台的参数:</h3><h4 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></div><div class="line">&#123;&#123; title &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>接收到后台的数据时,自动填充key值为title的数据.</p>
+<h4 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h4><h4 id="index-html-1"><a href="#index-html-1" class="headerlink" title="index.html:"></a>index.html:</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;% for article in last_article %&#125;</div><div class="line"><span class="tag">&lt;<span class="name">article</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#123;%</span> <span class="attr">url</span> '<span class="attr">archives</span>' <span class="attr">article.slug</span> %&#125; <span class="attr">class</span>=<span class="string">"image"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>= <span class="string">&#123;&#123;</span> <span class="attr">article.pic</span> &#125;&#125; <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; article.title &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"actions"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#123;%</span> <span class="attr">url</span> '<span class="attr">archives</span>' <span class="attr">article.slug</span> %&#125; <span class="attr">class</span>=<span class="string">"button"</span>&gt;</span>More<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span>	</div><div class="line">&#123;% endfor %&#125;</div></pre></td></tr></table></figure>
+<p>模块中可以有一些简单的逻辑如 <strong>for,if</strong> 等例如上面的代码,传入一个名为last_article的数组时候,for循环遍历读取内容.  article是一个Bean(原谅我找不到其他形容词…), article.title即标题.</p>
+<h3 id="加入图片-Css等静态内容"><a href="#加入图片-Css等静态内容" class="headerlink" title="加入图片,Css等静态内容:"></a>加入图片,Css等静态内容:</h3><p>将css文件等按上面的结构放入对应的文件夹中,打开apache的配置文件,在对应站点的配置文件中加入一行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Alias /static/ /var/django/mysite/blog/static/</div></pre></td></tr></table></figure>
+<p>前台页面中这样写:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/assets/css/main.css"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/static/images/pic10.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="二-后台逻辑"><a href="#二-后台逻辑" class="headerlink" title="二.后台逻辑"></a>二.后台逻辑</h2><p>后台的主要逻辑处理都在<strong>views.py</strong>中完成:</p>
+<h3 id="views-py示例"><a href="#views-py示例" class="headerlink" title="views.py示例:"></a>views.py示例:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse,Http404</div><div class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> RequestContext</div><div class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> TypechoContents,TypechoMetas</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line"><span class="comment">#以首页为例</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">home</span><span class="params">(request)</span>:</span></div><div class="line"></div><div class="line">	<span class="keyword">try</span>:</div><div class="line">		about_c = TypechoContents.objects.get(slug=<span class="string">'about'</span>)</div><div class="line">	<span class="keyword">except</span> TypechoContents.DoesNotExist:</div><div class="line">	    <span class="keyword">raise</span> Http404(<span class="string">"Page does not exist"</span>)	</div><div class="line">	<span class="comment">#about</span></div><div class="line">	about = &#123;<span class="string">'title'</span>:about_c.title,</div><div class="line">		 <span class="string">'text'</span>:markdown.markdown(about_c.text),</div><div class="line">		&#125;</div><div class="line">	<span class="comment">#最新的6篇文章显示在首页上</span></div><div class="line">	last_article = TypechoContents.objects.filter(type=<span class="string">'post'</span>).order_by(<span class="string">'modified'</span>).reverse()[:<span class="number">6</span>]</div><div class="line">	metas = getmate()</div><div class="line">	<span class="keyword">return</span> render(request,<span class="string">'index.html'</span>,locals())</div></pre></td></tr></table></figure>
+<p>render()返回渲染完成的页面</p>
+<h2 id="三-关于数据库"><a href="#三-关于数据库" class="headerlink" title="三.关于数据库"></a>三.关于数据库</h2><p>与大部分的Web框架一样,Django支持根据Bean建库的映射与数据库到Bean的反映射.<br>由于我是用typecho的数据库,所以仅仅使用了数据库生成Bean的功能.</p>
+<h3 id="由数据库生成Bean"><a href="#由数据库生成Bean" class="headerlink" title="由数据库生成Bean"></a>由数据库生成Bean</h3><p>首先在<strong>setting.py</strong>中设置使用的数据库:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">DATABASES = &#123;</div><div class="line">    <span class="string">'default'</span>: &#123;</div><div class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>, <span class="comment"># 数据库类型</span></div><div class="line">        <span class="string">'NAME'</span>: <span class="string">'数据库名'</span>,</div><div class="line">    	<span class="string">'USER'</span>: <span class="string">'数据库用户名'</span>,</div><div class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'数据库密码'</span>,</div><div class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</div><div class="line">        <span class="string">'PORT'</span>: <span class="string">'数据库端口'</span>,</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在shell中执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>python3 manage.py inspectdb &gt; ./models.py</div></pre></td></tr></table></figure>
+<p>完成后就可以看到自动生成的模型:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"></div><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AuthGroup</span><span class="params">(models.Model)</span>:</span></div><div class="line">    name = models.CharField(unique=<span class="keyword">True</span>, max_length=<span class="number">80</span>)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        managed = <span class="keyword">False</span></div><div class="line">        db_table = <span class="string">'auth_group'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AuthGroupPermissions</span><span class="params">(models.Model)</span>:</span></div><div class="line">    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)</div><div class="line">    permission = models.ForeignKey(<span class="string">'AuthPermission'</span>, models.DO_NOTHING)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        managed = <span class="keyword">False</span></div><div class="line">        db_table = <span class="string">'auth_group_permissions'</span></div><div class="line">        unique_together = ((<span class="string">'group'</span>, <span class="string">'permission'</span>),)</div><div class="line">......</div></pre></td></tr></table></figure></p>
+<p>在代码中操作数据库时(以TypechoContents模型类为例):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">TypechoContents.objects.all() 返回所有TypechoContents的集合,数据类型是Set.</div><div class="line">TypechoContents.objects.filter(slug=<span class="string">"0"</span>) 返回slug=<span class="number">0</span>的TypechoContents的Set.</div><div class="line"></div><div class="line">mContent = TypechoContents.objects.all().get(<span class="number">0</span>) <span class="comment">#取出第一篇文章</span></div><div class="line">mContent.modified = datatime.now()              <span class="comment">#修改</span></div><div class="line">mContent.save()                                 <span class="comment">#保存修改到数据库中</span></div></pre></td></tr></table></figure></p>
+<h2 id="四-关于Url"><a href="#四-关于Url" class="headerlink" title="四.关于Url"></a>四.关于Url</h2><p>在urls.py中配置网站的url:</p>
+<h3 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^$'</span>,                views.home,      name=<span class="string">'home'</span>),</div><div class="line">    url(<span class="string">r'^blog/$'</span>,   	      views.blogs,     name=<span class="string">'blogs'</span>),</div><div class="line">    url(<span class="string">r'^archicves/(\d+)/$'</span>,views.archives,  name=<span class="string">'archives'</span>),</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>前台页面中这样写:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"title"</span> <span class="attr">href</span>=<span class="string">&#123;%</span> <span class="attr">url</span> '<span class="attr">archives</span>' <span class="attr">article.slug</span> %&#125;&gt;</span> &#123;&#123; article.title &#125;&#125; <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>搭配起来在访问时是这样的效果：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"title"</span> <span class="attr">href</span>=<span class="string">/archicves/18/</span>&gt;</span> Ubuntu下Apache+Django学习手札 (一) <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>以上,基于Django的破产版博客就算搭建完成了,虽然有点简陋,但是看见自己写的代码变成好看的页面,也是成就感满满呀~</p>
+<h3 id="待完成-不会再完成QAQ-的功能"><a href="#待完成-不会再完成QAQ-的功能" class="headerlink" title="待完成(不会再完成QAQ)的功能:"></a>待完成(不会再完成QAQ)的功能:</h3><ul>
+<li>详情页对Markdown语法支持的不是很好</li>
+<li>详情页应该有上一篇下一篇功能</li>
+<li>列表页应该有翻页功能</li>
+<li>还不支持留言</li>
+</ul>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图:"></a>效果图:</h3><p><img src="http://rockmeroll.cn/pic/201701261323.png" alt="首页"></p>
+<p><img src="http://rockmeroll.cn/pic/201701261324.png" alt="列表页"></p>
+<p><img src="http://rockmeroll.cn/pic/201701261325.png" alt="详情页"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/20/Ubuntu下Apache+Django学习手札(一)/" rel="next" title="Ubuntu下Apache+Django学习手札 (一)">
+                <i class="fa fa-chevron-left"></i> Ubuntu下Apache+Django学习手札 (一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/26/011111100000/" rel="prev" title="0111 1110 0000">
+                0111 1110 0000 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockmeroll" />
+          <p class="site-author-name" itemprop="name">rockmeroll</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个无趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-首先是前台"><span class="nav-number">2.</span> <span class="nav-text">一.首先是前台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Block"><span class="nav-number">2.1.</span> <span class="nav-text">Block:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#base-html"><span class="nav-number">2.1.1.</span> <span class="nav-text">base.html:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-html"><span class="nav-number">2.1.2.</span> <span class="nav-text">index.html:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块中接受后台的参数"><span class="nav-number">2.2.</span> <span class="nav-text">模块中接受后台的参数:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例一"><span class="nav-number">2.2.1.</span> <span class="nav-text">示例一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例二"><span class="nav-number">2.2.2.</span> <span class="nav-text">示例二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-html-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">index.html:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入图片-Css等静态内容"><span class="nav-number">2.3.</span> <span class="nav-text">加入图片,Css等静态内容:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-后台逻辑"><span class="nav-number">3.</span> <span class="nav-text">二.后台逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#views-py示例"><span class="nav-number">3.1.</span> <span class="nav-text">views.py示例:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-关于数据库"><span class="nav-number">4.</span> <span class="nav-text">三.关于数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#由数据库生成Bean"><span class="nav-number">4.1.</span> <span class="nav-text">由数据库生成Bean</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-关于Url"><span class="nav-number">5.</span> <span class="nav-text">四.关于Url</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#urls-py"><span class="nav-number">5.1.</span> <span class="nav-text">urls.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#End"><span class="nav-number">6.</span> <span class="nav-text">End</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#待完成-不会再完成QAQ-的功能"><span class="nav-number">6.1.</span> <span class="nav-text">待完成(不会再完成QAQ)的功能:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">6.2.</span> <span class="nav-text">效果图:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockmeroll</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

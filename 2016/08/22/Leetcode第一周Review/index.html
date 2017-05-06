@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="费劲周折把技术博(?)给搭好了,后天把搭建的过程写下来吧,先写刷题的review,不然时间太久会忘记~上周开始尝试Leetcode,按Acceptance从高到低开始做,本来打算每周日做一个Review,结果耽误了,拖到了今天,希望这个系列能写久一点。然后下周可能有别的事，刚开始就要鸽了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode第一周Review">
+<meta property="og:url" content="http://rockmeroll.cn/2016/08/22/Leetcode第一周Review/index.html">
+<meta property="og:site_name" content="RM&#39;s Blog">
+<meta property="og:description" content="费劲周折把技术博(?)给搭好了,后天把搭建的过程写下来吧,先写刷题的review,不然时间太久会忘记~上周开始尝试Leetcode,按Acceptance从高到低开始做,本来打算每周日做一个Review,结果耽误了,拖到了今天,希望这个系列能写久一点。然后下周可能有别的事，刚开始就要鸽了。">
+<meta property="og:updated_time" content="2017-05-06T03:03:50.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode第一周Review">
+<meta name="twitter:description" content="费劲周折把技术博(?)给搭好了,后天把搭建的过程写下来吧,先写刷题的review,不然时间太久会忘记~上周开始尝试Leetcode,按Acceptance从高到低开始做,本来打算每周日做一个Review,结果耽误了,拖到了今天,希望这个系列能写久一点。然后下周可能有别的事，刚开始就要鸽了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://rockmeroll.cn/2016/08/22/Leetcode第一周Review/"/>
+
+
+
+
+
+  <title>Leetcode第一周Review | RM's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RM's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2016/08/22/Leetcode第一周Review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rockmeroll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RM's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode第一周Review</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-22T18:55:00+08:00">
+                2016-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂项/" itemprop="url" rel="index">
+                    <span itemprop="name">杂项</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>费劲周折把技术博(?)给搭好了,后天把搭建的过程写下来吧,先写刷题的review,不然时间太久会忘记~<br>上周开始尝试Leetcode,按Acceptance从高到低开始做,本来打算每周日做一个Review,结果耽误了,拖到了今天,希望这个系列能写久一点。然后下周可能有别的事，刚开始就要鸽了。</p>
+<a id="more"></a>
+<h2 id="292-Nim-Game"><a href="#292-Nim-Game" class="headerlink" title="292. Nim Game"></a>292. Nim Game</h2><p>一堆石子,两个人轮流取,一次可取1-3个,取完的人胜,题目很简单,但是思路一点都不简单,如果不可连续取(如[1,3,5])时该怎么解?。</p>
+<p>当n∈[1,3]时，先手必胜。<br>当n = 4时，无论先手第一轮如何选取，下一轮都会转化为n∈[1,3]的情形，此时先手必负。<br>当n∈[5,7]时，先手必胜，先手分别通过取走[1,3]颗石头，可将状态转化为n == 4时的情形，此时后手必负。<br>当n = 8时，无论先手第一轮如何选取，下一轮都会转化为n∈[5,7]的情形，此时先手必负。<br>……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canWinNim</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (n%<span class="number">4</span>)!=<span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="371-Sum-of-Two-Integers"><a href="#371-Sum-of-Two-Integers" class="headerlink" title="371. Sum of Two Integers"></a>371. Sum of Two Integers</h2><p>不用+号完成两个数的加法运算,相当于造一个加法器的轮子吧,carry为进位控制,将两数按位加,,循环处理进位得出结果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> carry = a&amp;b;</div><div class="line">        <span class="keyword">int</span> result = a^b;</div><div class="line">        <span class="keyword">while</span>(carry)&#123;</div><div class="line">            <span class="keyword">int</span> tmp_a = result;</div><div class="line">            <span class="keyword">int</span> tmp_b = carry&lt;&lt;<span class="number">1</span>;</div><div class="line">            carry = tmp_a&amp;tmp_b;</div><div class="line">            result = tmp_a^tmp_b;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="136-Single-Number"><a href="#136-Single-Number" class="headerlink" title="136. Single Number"></a>136. Single Number</h2><p>技巧题,一个数组,有若干个数字出现了2次,只有一个数字出现了一次,求这个数.<br>一个数的异或自己为1<br>a^a=1<br>a^b^c^a^b = c<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> result = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.size();i++)&#123;</div><div class="line">            result^=nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="104-Maximum-Depth-of-Binary-Tree"><a href="#104-Maximum-Depth-of-Binary-Tree" class="headerlink" title="104. Maximum Depth of Binary Tree"></a>104. Maximum Depth of Binary Tree</h2><p>考察基础数据结构，二叉树的最大深度，后序遍历挑最大值即可<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">std</span>::max(maxDepth(root-&gt;left), maxDepth(root-&gt;right));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="258-Add-Digits"><a href="#258-Add-Digits" class="headerlink" title="258. Add Digits"></a>258. Add Digits</h2><p>将一个数n的每一位相加,直到结果为一位数为止,要求不使用循环(O(1))<br>数学题,将n除9取余就可以:<br>设一个四位数 4231<br>    4231 = 4000 + 200 + 30 + 1<br>    4000 % 9 = 4<br>    200 % 9 = 2<br>    30 % 9 = 3<br>    4231 % 9 = 4000 % 9 + 200 % 9 + 30 % 9 + 1 % 9 = 4+2+3+1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (num % <span class="number">9</span> == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">9</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> num % <span class="number">9</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="226-Invert-Binary-Tree"><a href="#226-Invert-Binary-Tree" class="headerlink" title="226. Invert Binary Tree"></a>226. Invert Binary Tree</h2><p>基础数据结构,反转二叉树,后续遍历即可.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        </div><div class="line">        invertTree(root-&gt;left);</div><div class="line">        invertTree(root-&gt;right);</div><div class="line">        </div><div class="line">        TreeNode *tmp = root-&gt;right;</div><div class="line">        root-&gt;right = root-&gt;left;</div><div class="line">        root-&gt;left = tmp;</div><div class="line">            </div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="382-Linked-List-Random-Node"><a href="#382-Linked-List-Random-Node" class="headerlink" title="382. Linked List Random Node"></a>382. Linked List Random Node</h2><p>算法题,要求在链表中随机选出一个数据.<br>要使用C++的rand函数的话,要先知道链表的长度,效率很低.这里使用蓄水池算法,按顺序遍历链表,将第一个数据作为初始值,以 1/2 的概率决定要不要用第二个值替换结果,以 1/3 的概率决定要不要用第三个值替换结果,以此类推,这样每一个值都有相同的概率被选中.很精妙的算法!<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * struct ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode *next;</div><div class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    ListNode* head_;</div><div class="line">    <span class="comment">/** @param head The linked list's head.</span></div><div class="line">        Note that the head is guaranteed to be not null, so it contains at least one node. */</div><div class="line">    Solution(ListNode* head) &#123;</div><div class="line">        head_ = head;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/** Returns a random node's value. */</span></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getRandom</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> result = head_-&gt;val;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line">        ListNode *u = head_;</div><div class="line">        <span class="keyword">while</span>(u-&gt;next!=<span class="literal">NULL</span>)&#123;</div><div class="line">            i++;</div><div class="line">            u = u-&gt;next;</div><div class="line">            <span class="keyword">if</span>(<span class="built_in">std</span>::rand() % i == <span class="number">0</span>)&#123;</div><div class="line">                result = u-&gt;val;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your Solution object will be instantiated and called as such:</div><div class="line"> * Solution obj = new Solution(head);</div><div class="line"> * int param_1 = obj.getRandom();</div><div class="line"> */</div></pre></td></tr></table></figure></p>
+<h2 id="283-Move-Zeroes"><a href="#283-Move-Zeroes" class="headerlink" title="283. Move Zeroes"></a>283. Move Zeroes</h2><p>将一个数组中所有的0都移到最后面.<br>我的解法:<br>使用头尾两个指针,遍历直到head为0,tail往前读取找到第一个非0项,交换head和tail,然而这种方法过不了LeetCode的OJ…<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> *head = &amp;nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> *tail = head+nums.size()<span class="number">-1</span>;</div><div class="line">        <span class="keyword">while</span>(head&lt;tail)&#123;</div><div class="line">            <span class="keyword">while</span>(*tail == <span class="number">0</span>)&#123;</div><div class="line">                    tail--;</div><div class="line">                    <span class="keyword">if</span>(tail == head)</div><div class="line">                        <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">            <span class="keyword">if</span>(*head == <span class="number">0</span>)&#123;</div><div class="line">                </div><div class="line">                *head = *tail;</div><div class="line">                *tail = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">            head++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>OJ要求的做法是从前往后找为0的项进行交换:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> *p1 = &amp;nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> *tail = p1+nums.size()-<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(p1 != tail)&#123;</div><div class="line">            <span class="keyword">if</span>(*p1 == <span class="number">0</span>)&#123;</div><div class="line">                <span class="keyword">int</span> *p2 = p1+<span class="number">1</span>;</div><div class="line">                </div><div class="line">                <span class="keyword">while</span>(*p2 == <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(p2 == tail)&#123;</div><div class="line">                        <span class="keyword">return</span>;</div><div class="line">                    &#125;</div><div class="line">                    p2++;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                *p1 = *p2;</div><div class="line">                *p2 = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">           p1++;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h2><p>Given an array of n integers where n &gt; 1, nums, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].<br>Solve it without division and in O(n).<br>For example, given [1,2,3,4], return [24,12,8,6].</p>
+<p>我的解法是将所有数相乘,并统计0的个数,在对应的位置除以原数组的数.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">int</span> t=<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> ZeroCount = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</div><div class="line">            <span class="keyword">if</span>(nums[i]!=<span class="number">0</span>)</div><div class="line">                t = t*nums[i];</div><div class="line">            <span class="keyword">else</span></div><div class="line">                ZeroCount++;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; output(nums.size());</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ZeroCount == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</div><div class="line">                output[i] =  t/nums[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ZeroCount == <span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</div><div class="line">                <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)&#123;</div><div class="line">                    output[i] = t;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    output[i] = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(ZeroCount &gt; <span class="number">1</span>)&#123;</div><div class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</div><div class="line">                output[i] =  <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="keyword">return</span> output;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>Intersection of Two Arrays<br>未解之谜349<br>Given two arrays, write a function to compute their intersection.</li>
+</ol>
+<p>Example:<br>Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intersection(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums2) &#123;</div><div class="line">        <span class="keyword">if</span>(nums1.size() == <span class="number">0</span> )&#123;</div><div class="line">            <span class="keyword">return</span> nums1;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(nums2.size() == <span class="number">0</span> )&#123;</div><div class="line">            <span class="keyword">return</span> nums2;</div><div class="line">        &#125;</div><div class="line">        sort(nums1.begin(), nums1.end());</div><div class="line">        sort(nums2.begin(), nums2.end());</div><div class="line">        </div><div class="line">        <span class="keyword">int</span>  *p1 = &amp;nums1[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span>  *tail_1 = p1+nums1.size();</div><div class="line">        <span class="keyword">int</span>  *p2 = &amp;nums2[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span>  *tail_2 = p2+nums2.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">    </div><div class="line"></div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(p1 != tail_1 &amp;&amp; p2 != tail_2)&#123;</div><div class="line">            <span class="keyword">if</span>(*p1 == *p2)&#123;</div><div class="line">                res.push_back(*p1);</div><div class="line">                p1++;</div><div class="line">                p2++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(*p1&lt;*p2)&#123;</div><div class="line">                p1++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(*p1&gt;*p2)&#123;</div><div class="line">                p2++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(p1 != tail_1)&#123;</div><div class="line">            <span class="keyword">if</span>(*p1 == *p2)</div><div class="line">                res.push_back(*p1);</div><div class="line">            p1++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span>(p2 != tail_2)&#123;</div><div class="line">            <span class="keyword">if</span>(*p1 == *p2)</div><div class="line">                res.push_back(*p2);</div><div class="line">            p2++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(res.size()!=<span class="number">0</span>)&#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = unique(res.begin(), res.end());</div><div class="line">            res.erase(iter, res.end());</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//return nums1;</span></div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>根据(模糊的)记忆写了书上的交集算法，可能哪里没写好，导致[3,1,2],[1,1]这一组数据过不去，但是在本地又是正确的结果，本地也没有装GDB，挖个坑等debug吧。</p>
+<p>这周的Review就这样吧,每次刷完题看一下讨论帖,都会觉得智商被碾压…哎.继续加油吧.还有一个小时我过生日了.头一次一个人在外过生日.明天要出去吃点好的安慰一下自己.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/29/Leetcode第二周Review/" rel="prev" title="Leetcode第二周Review">
+                Leetcode第二周Review <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockmeroll" />
+          <p class="site-author-name" itemprop="name">rockmeroll</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个无趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#292-Nim-Game"><span class="nav-number">1.</span> <span class="nav-text">292. Nim Game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#371-Sum-of-Two-Integers"><span class="nav-number">2.</span> <span class="nav-text">371. Sum of Two Integers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#136-Single-Number"><span class="nav-number">3.</span> <span class="nav-text">136. Single Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#104-Maximum-Depth-of-Binary-Tree"><span class="nav-number">4.</span> <span class="nav-text">104. Maximum Depth of Binary Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#258-Add-Digits"><span class="nav-number">5.</span> <span class="nav-text">258. Add Digits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#226-Invert-Binary-Tree"><span class="nav-number">6.</span> <span class="nav-text">226. Invert Binary Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#382-Linked-List-Random-Node"><span class="nav-number">7.</span> <span class="nav-text">382. Linked List Random Node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-number">8.</span> <span class="nav-text">283. Move Zeroes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#238-Product-of-Array-Except-Self"><span class="nav-number">9.</span> <span class="nav-text">238. Product of Array Except Self</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockmeroll</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

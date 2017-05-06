@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="电子竞技没有国庆节！最近对自己的代码越来越没有自信，总觉得自己的解法很蠢很弱智，留个背头会不会自信一点呢~（误">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode第七周Review">
+<meta property="og:url" content="http://rockmeroll.cn/2016/10/02/Leetcode第七周Review/index.html">
+<meta property="og:site_name" content="RM&#39;s Blog">
+<meta property="og:description" content="电子竞技没有国庆节！最近对自己的代码越来越没有自信，总觉得自己的解法很蠢很弱智，留个背头会不会自信一点呢~（误">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/8/8b/Binary_clock_samui_moon.jpg">
+<meta property="og:updated_time" content="2017-05-06T03:03:56.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode第七周Review">
+<meta name="twitter:description" content="电子竞技没有国庆节！最近对自己的代码越来越没有自信，总觉得自己的解法很蠢很弱智，留个背头会不会自信一点呢~（误">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/8/8b/Binary_clock_samui_moon.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://rockmeroll.cn/2016/10/02/Leetcode第七周Review/"/>
+
+
+
+
+
+  <title>Leetcode第七周Review | RM's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RM's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2016/10/02/Leetcode第七周Review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rockmeroll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RM's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode第七周Review</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-02T16:09:00+08:00">
+                2016-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂项/" itemprop="url" rel="index">
+                    <span itemprop="name">杂项</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>电子竞技没有国庆节！最近对自己的代码越来越没有自信，总觉得自己的解法很蠢很弱智，留个背头会不会自信一点呢~（误</p>
+<a id="more"></a>
+<h2 id="389-Find-the-Difference"><a href="#389-Find-the-Difference" class="headerlink" title="389. Find the Difference"></a>389. Find the Difference</h2><p>iven two strings s and t which consist of only lowercase letters.</p>
+<p>String t is generated by random shuffling string s and then add one more letter at a random position.</p>
+<p>Find the letter that was added in t.</p>
+<p>Example:</p>
+<p>Input:<br>s = “abcd”<br>t = “abcde”</p>
+<p>Output:<br>e</p>
+<p>Explanation:<br>‘e’ is the letter that was added.</p>
+<p>给出两个字符串，其中一个字符串在随机位置多添加了一个字母，要求找出这个后添加的字母。</p>
+<p><strong>愚蠢</strong>的解法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">findTheDifference</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">char</span>[] ss = s.toCharArray();</div><div class="line">        <span class="keyword">char</span>[] tt = t.toCharArray();</div><div class="line">        Arrays.sort(ss);</div><div class="line">        Arrays.sort(tt);</div><div class="line">        <span class="keyword">int</span> p1=<span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> p2=<span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(p1 &lt; ss.length &amp;&amp; p2 &lt; tt.length)&#123;</div><div class="line">            <span class="keyword">if</span>(ss[p1] != tt[p2])&#123;</div><div class="line">                <span class="keyword">return</span> tt[p1];</div><div class="line">            &#125;</div><div class="line">            p1++;p2++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> tt[p2];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>正确的解法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">findTheDifference</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line">        <span class="keyword">char</span> c=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</div><div class="line">            c ^= s.charAt(i);</div><div class="line">            c ^= t.charAt(i);</div><div class="line">        &#125;</div><div class="line">        c ^= t.charAt(t.length() - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>原理就是 a^a =0,跟之前的题目 <a href="http://www.rockmeroll.cn/index.php/archives/12/#217.ContainsDuplicate" target="_blank" rel="external">217. Contains Duplicate</a> 很像，然而我一开始并没有想起来，于是就有了上面的愚蠢解法，要学以致用啊年轻人！</p>
+<h2 id="167-Two-Sum-II-Input-array-is-sorted"><a href="#167-Two-Sum-II-Input-array-is-sorted" class="headerlink" title="167. Two Sum II - Input array is sorted"></a>167. Two Sum II - Input array is sorted</h2><p>Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p>Input: numbers={2, 7, 11, 15}, target=9<br>Output: index1=1, index2=2</p>
+<p>在数组中选2个数字，要求和为给出的target。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] numbers, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">int</span> head = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> tail = numbers.length-<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(numbers[head]+numbers[tail] != target)&#123;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(numbers[head]+numbers[tail] &gt; target)&#123;</div><div class="line">                tail--;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(numbers[head]+numbers[tail] &lt; target)&#123;</div><div class="line">                head++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">        res[<span class="number">0</span>] = head+<span class="number">1</span>;</div><div class="line">        res[<span class="number">1</span>] = tail+<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于给出的数组是按从小到大的顺序排列的，所以这里用两个指针，一头一尾，轮流向中间移动，直到得出结果。</p>
+<h2 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12. Integer to Roman"></a>12. Integer to Roman</h2><p>很有趣的题目,阿拉伯数字转化为罗马数字,姐妹题在这 <a href="http://www.rockmeroll.cn/index.php/archives/12/#13.RomantoInteger" target="_blank" rel="external">13. Roman to Integer</a>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        String[] dic_1    = &#123;<span class="string">""</span>,<span class="string">"I"</span>,<span class="string">"II"</span>,<span class="string">"III"</span>,<span class="string">"IV"</span>,<span class="string">"V"</span>,<span class="string">"VI"</span>,<span class="string">"VII"</span>,<span class="string">"VIII"</span>,<span class="string">"IX"</span>&#125;;</div><div class="line">        String[] dic_10   = &#123;<span class="string">""</span>,<span class="string">"X"</span>,<span class="string">"XX"</span>,<span class="string">"XXX"</span>,<span class="string">"XL"</span>,<span class="string">"L"</span>,<span class="string">"LX"</span>,<span class="string">"LXX"</span>,<span class="string">"LXXX"</span>,<span class="string">"XC"</span>&#125;;</div><div class="line">        String[] dic_100  = &#123;<span class="string">""</span>,<span class="string">"C"</span>,<span class="string">"CC"</span>,<span class="string">"CCC"</span>,<span class="string">"CD"</span>,<span class="string">"D"</span>,<span class="string">"DC"</span>,<span class="string">"DCC"</span>,<span class="string">"DCCC"</span>,<span class="string">"CM"</span>&#125;;</div><div class="line">        String[] dic_1000 = &#123;<span class="string">""</span>,<span class="string">"M"</span>,<span class="string">"MM"</span>,<span class="string">"MMM"</span>&#125;;</div><div class="line">        String res = <span class="string">""</span>;</div><div class="line">        </div><div class="line">        res += dic_1000[num/<span class="number">1000</span>];</div><div class="line">        num = num%<span class="number">1000</span>;</div><div class="line">        </div><div class="line">        res += dic_100[num/<span class="number">100</span>];</div><div class="line">        num = num%<span class="number">100</span>;</div><div class="line">        </div><div class="line">        res += dic_10[num/<span class="number">10</span>];</div><div class="line">        num = num%<span class="number">10</span>;</div><div class="line">        </div><div class="line">        res += dic_1[num];</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>建表查表就OK</p>
+<h2 id="401-Binary-Watch"><a href="#401-Binary-Watch" class="headerlink" title="401. Binary Watch"></a>401. Binary Watch</h2><p>A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59).</p>
+<p>Each LED represents a zero or one, with the least significant bit on the right.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Binary_clock_samui_moon.jpg" alt="null"></p>
+<p>For example, the above binary watch reads “3:25”.</p>
+<p>Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.</p>
+<p>Example:</p>
+<p>Input: n = 1<br>Return: [“1:00”, “2:00”, “4:00”, “8:00”, “0:01”, “0:02”, “0:04”, “0:08”, “0:16”, “0:32”]</p>
+<p>num代表亮了几盏灯，要求给出所有可能的时间.<br>令每个时刻的时和分分别为 h、m,计算hm二进制形式中1的个数,相加符合num的即为结果。<br>JAVA自带统计1的个数的函数bitCount</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">readBinaryWatch</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> h=<span class="number">0</span>; h&lt;<span class="number">12</span>; h++)</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> m=<span class="number">0</span>; m&lt;<span class="number">60</span>; m++)</div><div class="line">                <span class="keyword">if</span> (Integer.bitCount(h * <span class="number">64</span> + m) == num)</div><div class="line">                    result.add(String.format(<span class="string">"%d:%02d"</span>, h, m));</div><div class="line">      </div><div class="line">        <span class="keyword">return</span> result;   </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="405-Convert-a-Number-to-Hexadecimal"><a href="#405-Convert-a-Number-to-Hexadecimal" class="headerlink" title="405. Convert a Number to Hexadecimal"></a>405. Convert a Number to Hexadecimal</h2><p>将10进制数转化为16进制，懒劲上来了，直接用java自带的Integer.toHexString(num)就能实现，代码不放了。</p>
+<h2 id="318-Maximum-Product-of-Word-Lengths"><a href="#318-Maximum-Product-of-Word-Lengths" class="headerlink" title="318. Maximum Product of Word Lengths"></a>318. Maximum Product of Word Lengths</h2><p>Given a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.</p>
+<p>Example 1:<br>Given [“abcw”, “baz”, “foo”, “bar”, “xtfn”, “abcdef”]<br>Return 16<br>The two words can be “abcw”, “xtfn”.</p>
+<p>Example 2:<br>Given [“a”, “ab”, “abc”, “d”, “cd”, “bcd”, “abcd”]<br>Return 4<br>The two words can be “ab”, “cd”.</p>
+<p>Example 3:<br>Given [“a”, “aa”, “aaa”, “aaaa”]<br>Return 0<br>No such pair of words.</p>
+<p>未解之谜<br>给一个字符串数组，找出没有相同字母的两组字符串，要求这两组字符串长度的乘积最大。</p>
+<p>目前还没有想出好的解法，唯一的思路时建立集合，求交集，若为空就计算乘积，但是这么写会超时，看了看论坛上的解法，似乎要用到位运算，又是弱项，过了国庆节再详细看看吧。</p>
+<p>END</p>
+<p>这个黄金周应该学不进去什么东西，打算好好享受一下为数不多的假期了。<br>下个周回去要备战跟土建的科超了，同时新生也来了，要好好想一想怎么带他们<br>废话也不多说，干死土建~！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/26/第六周/" rel="next" title="第六周">
+                <i class="fa fa-chevron-left"></i> 第六周
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/19/鸽了很久的刷题系列/" rel="prev" title="鸽了很久的刷题系列">
+                鸽了很久的刷题系列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockmeroll" />
+          <p class="site-author-name" itemprop="name">rockmeroll</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个无趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#389-Find-the-Difference"><span class="nav-number">1.</span> <span class="nav-text">389. Find the Difference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#167-Two-Sum-II-Input-array-is-sorted"><span class="nav-number">2.</span> <span class="nav-text">167. Two Sum II - Input array is sorted</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Integer-to-Roman"><span class="nav-number">3.</span> <span class="nav-text">12. Integer to Roman</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#401-Binary-Watch"><span class="nav-number">4.</span> <span class="nav-text">401. Binary Watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#405-Convert-a-Number-to-Hexadecimal"><span class="nav-number">5.</span> <span class="nav-text">405. Convert a Number to Hexadecimal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#318-Maximum-Product-of-Word-Lengths"><span class="nav-number">6.</span> <span class="nav-text">318. Maximum Product of Word Lengths</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockmeroll</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
