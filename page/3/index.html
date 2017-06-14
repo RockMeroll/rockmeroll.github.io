@@ -90,18 +90,15 @@
 
 
 
-<meta name="description" content="博主高产似母猪, 今天的内容是单例模式.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="初窥设计模式: 单例模式">
-<meta property="og:url" content="http://rockmeroll.cn/2017/03/01/初窥设计模式_单例模式/index.html">
+<meta name="description" content="一个无趣的人">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RM&#39;s Blog">
+<meta property="og:url" content="http://rockmeroll.cn/page/3/index.html">
 <meta property="og:site_name" content="RM&#39;s Blog">
-<meta property="og:description" content="博主高产似母猪, 今天的内容是单例模式.">
-<meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201703010952.png">
-<meta property="og:updated_time" content="2017-05-06T03:30:25.415Z">
+<meta property="og:description" content="一个无趣的人">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初窥设计模式: 单例模式">
-<meta name="twitter:description" content="博主高产似母猪, 今天的内容是单例模式.">
-<meta name="twitter:image" content="http://okdlluqr1.bkt.clouddn.com/201703010952.png">
+<meta name="twitter:title" content="RM&#39;s Blog">
+<meta name="twitter:description" content="一个无趣的人">
 
 
 
@@ -129,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://rockmeroll.cn/2017/03/01/初窥设计模式_单例模式/"/>
+  <link rel="canonical" href="http://rockmeroll.cn/page/3/"/>
 
 
 
 
 
-  <title>初窥设计模式: 单例模式 | RM's Blog</title>
+  <title>RM's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,7 +157,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,9 +262,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -274,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2017/03/01/初窥设计模式_单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2016/08/22/Leetcode第一周Review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="rockmeroll">
@@ -291,7 +290,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初窥设计模式: 单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/22/Leetcode第一周Review/" itemprop="url">Leetcode第一周Review</a></h1>
         
 
         <div class="post-meta">
@@ -303,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T11:11:08+08:00">
-                2017-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-22T18:55:00+08:00">
+                2016-08-22
               </time>
             
 
@@ -326,8 +327,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/杂项/" itemprop="url" rel="index">
+                    <span itemprop="name">杂项</span>
                   </a>
                 </span>
 
@@ -360,44 +361,28 @@
       
 
       
-        <p>博主高产似母猪, 今天的内容是单例模式.</p>
-<a id="more"></a>
-<p>定义: <strong>单例模式</strong>确保一个类只有一个对象, 并提供一个全局访问点.</p>
-<p>有些对象在一个程序中只需要一个, 例如线程池(ThreadPool), 缓存(Cache), 对话框, 驱动等. 这类对象如果有多个实例, 反而会造成很多问题.</p>
-<p>Q: 那为什么不用静态变量解决呢?</p>
-<p>静态变量会在JVM运行时就创建好对象, 即使此次运行没有用到此对象, 这样就造成了资源的浪费.</p>
-<p>Q: 单例模式如何保证对象只被创建一次？</p>
-<p>单例模式的对象使用 private 属性的构造函数, 确保其他类无法创建它的实例, 并提供一个getInstance()方法做为全局访问点.</p>
-<h3 id="SingleTon-java"><a href="#SingleTon-java" class="headerlink" title="SingleTon.java"></a>SingleTon.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Class Singleton&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton singleton;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Instance Created"</span>);    </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">            singleton = <span class="keyword">new</span> Singleton(); <span class="comment">//第一次使用时创建</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个版本简单的演示了单例模式, 然而这段代码是有安全隐患的, 当多线程调用getInstance()时, 可能会出现两个SingleTon的对象,如下:</p>
-<p><img src="http://okdlluqr1.bkt.clouddn.com/201703010952.png" alt="请输入图片描述"></p>
-<p>当然要解决这个问题也很简单, 只需要对 getInstance() 加上 synchronized 修饰符,确保同一时间只有一个线程能访问它.</p>
-<p>当然又有了新的问题: 只有第一次运行时, 这个同步才起到安全锁的功能, 其他时间都是拖慢性能的累赘.<br>解决方法如下:<br>1.如果getInstance()对应用程序不是很关键, 就什么都不做.(废话)<br>2.在程序开始时实例化, 而不是延迟实例化.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div></pre></td></tr></table></figure></p>
-<p>3.双重检验加锁, 适用于Java 1.4 以上的版本<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Class SingleTon&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingleTon singleton;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Instance Created"</span>);    </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(singleton == <span class="keyword">null</span>)&#123;</div><div class="line">            synchroized(Singleton.class)&#123;    <span class="comment">//进入同步</span></div><div class="line">                singleton = <span class="keyword">new</span> Singleton(); <span class="comment">//第一次使用时创建</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>volatile关键字确保当singleton实例化时, 多个线程正确处理singleton变量.<br>极度注重性能时可以使用这个方法.</p>
-<p>简单又复杂的单例模式.</p>
-
+        
+          <p>费劲周折把技术博(?)给搭好了,后天把搭建的过程写下来吧,先写刷题的review,不然时间太久会忘记~<br>上周开始尝试Leetcode,按Acceptance从高到低开始做,本来打算每周日做一个Review,结果耽误了,拖到了今天,希望这个系列能写久一点。然后下周可能有别的事，刚开始就要鸽了。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/22/Leetcode第一周Review/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -405,42 +390,25 @@
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/28/初窥设计模式_工厂模式/" rel="next" title="初窥设计模式: 工厂模式">
-                <i class="fa fa-chevron-left"></i> 初窥设计模式: 工厂模式
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/14/初窥设计模式_命令模式/" rel="prev" title="初窥设计模式: 命令模式">
-                初窥设计模式: 命令模式 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -448,10 +416,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -471,17 +435,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -534,22 +489,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SingleTon-java"><span class="nav-number">1.</span> <span class="nav-text">SingleTon.java</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -663,10 +602,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
