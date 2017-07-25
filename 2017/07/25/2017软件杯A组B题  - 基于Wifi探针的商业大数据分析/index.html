@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="2017软件杯A组B题  - 基于Wifi探针的商业大数据分析 这个比赛真的是肥肠的耗时间, 因为没有提前找队友, 直到比赛开始才找了一个不怎么会写代码的研究生, 所以一直都是自己在写, 一直到截止前两天才写完, 最后评分是77.7 分..挺高的分数为什么没能进决赛呢…. 设计系统时的一些要点: 探针是淘宝上购买的, 实现细节不清楚 服务器端接受POST请求, 并写入HDFS, 后台不断读取HDF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RM&#39;s Blog">
+<meta property="og:url" content="http://rockmeroll.cn/2017/07/25/2017软件杯A组B题  - 基于Wifi探针的商业大数据分析/index.html">
+<meta property="og:site_name" content="RM&#39;s Blog">
+<meta property="og:description" content="2017软件杯A组B题  - 基于Wifi探针的商业大数据分析 这个比赛真的是肥肠的耗时间, 因为没有提前找队友, 直到比赛开始才找了一个不怎么会写代码的研究生, 所以一直都是自己在写, 一直到截止前两天才写完, 最后评分是77.7 分..挺高的分数为什么没能进决赛呢…. 设计系统时的一些要点: 探针是淘宝上购买的, 实现细节不清楚 服务器端接受POST请求, 并写入HDFS, 后台不断读取HDF">
+<meta property="og:updated_time" content="2017-07-25T07:13:26.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RM&#39;s Blog">
+<meta name="twitter:description" content="2017软件杯A组B题  - 基于Wifi探针的商业大数据分析 这个比赛真的是肥肠的耗时间, 因为没有提前找队友, 直到比赛开始才找了一个不怎么会写代码的研究生, 所以一直都是自己在写, 一直到截止前两天才写完, 最后评分是77.7 分..挺高的分数为什么没能进决赛呢…. 设计系统时的一些要点: 探针是淘宝上购买的, 实现细节不清楚 服务器端接受POST请求, 并写入HDFS, 后台不断读取HDF">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://rockmeroll.cn/2017/07/25/2017软件杯A组B题  - 基于Wifi探针的商业大数据分析/"/>
+
+
+
+
+
+  <title> | RM's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RM's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2017/07/25/2017软件杯A组B题  - 基于Wifi探针的商业大数据分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rockmeroll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RM's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T15:13:26+08:00">
+                2017-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="2017软件杯A组B题-基于Wifi探针的商业大数据分析"><a href="#2017软件杯A组B题-基于Wifi探针的商业大数据分析" class="headerlink" title="2017软件杯A组B题  - 基于Wifi探针的商业大数据分析"></a>2017软件杯A组B题  - 基于Wifi探针的商业大数据分析</h1><hr>
+<p>这个比赛真的是肥肠的耗时间, 因为没有提前找队友, 直到比赛开始才找了一个不怎么会写代码的研究生, 所以一直都是自己在写, 一直到截止前两天才写完, 最后评分是77.7 分..挺高的分数为什么没能进决赛呢….</p>
+<h2 id="设计系统时的一些要点"><a href="#设计系统时的一些要点" class="headerlink" title="设计系统时的一些要点:"></a>设计系统时的一些要点:</h2><ul>
+<li>探针是淘宝上购买的, 实现细节不清楚</li>
+<li>服务器端接受POST请求, 并写入HDFS, 后台不断读取HDFS中的文件, 进行分析操作</li>
+<li>服务器返回代表结果的JSON数据，前台JS解析，并更新表数据</li>
+<li>无耦合(将JSON处理分离出来, 将数据库入库分离出来)(未实装)</li>
+<li>对JOSN的处理：去除“data=”只留JSON主体部分</li>
+<li>对所有顾客进行分析, 只对入店顾客进行入库</li>
+<li>Thrift 实现 Python 对 Hbase的操作</li>
+<li>理论上, 一次扫描返回的结果不会有重复mac</li>
+<li>结果既有时点数据也有时段数据(macs)</li>
+<li>可以在main.py里实现定时任务(划掉)</li>
+<li>Linux crontab 实现定时任务</li>
+<li>1000并发优化（线程池取代新线程）</li>
+<li>通信格式为JSON</li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Ubuntu 16.04 </li>
+<li>Docker 1.12.6 </li>
+<li>Docker镜像 Ubuntu 14.04 </li>
+<li>Hadoop 2.7.3 </li>
+<li>Hbase 1.2.5 </li>
+<li>Spark 1.6.0 </li>
+<li>Apache 2.4.7 </li>
+<li>Mysql 14.14</li>
+</ul>
+<h3 id="依赖包"><a href="#依赖包" class="headerlink" title="依赖包"></a>依赖包</h3><ul>
+<li>Django </li>
+<li>hdfs </li>
+<li>thrift </li>
+<li>MySQLdb (apt-get install python-mysqldb) </li>
+<li>mod_wsgi (apt-get install libapache2-mod-wsgi)</li>
+</ul>
+<h2 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构:"></a>数据表结构:</h2><p>顾客表  :<br>|Row-Key|    VisitingInfo(列簇)|<br>|:—–:|:———————-:|<br>|  mac  |上次来访时间, 上次驻点时长, 上次来访周期, 活跃度|</p>
+<p>结果表  ：<br>|统计时间|客流量|入店量|跳出量|深访量|新顾客|老顾客|<br>|:——:|:—-:|:—-:|:—-:|:—-:|:—-:|:—-:|<br>|Time  | flow | inner| outer|deepin|  new | old</p>
+<h2 id="要求指标的算法"><a href="#要求指标的算法" class="headerlink" title="要求指标的算法:"></a>要求指标的算法:</h2><ul>
+<li>面向客流：<ul>
+<li>客流量：店铺或区域整体客流及趋势</li>
+<li>入店量：进入店铺或区域的客流及趋势</li>
+<li>入店率：进入店铺或区域的客流占全部客流的比例及趋势<pre><code>+ 入店量/客流量
+</code></pre></li>
+<li>跳出率：进入店铺后很快离店的顾客及占比(占总体客流)<pre><code>+ 根据顾客表中的上次来访时间计算得到  
++ 在客流中未入店的部分进行上次来访时间(来访周期)的比对, 在(x)分钟内访问过的即可视为跳出
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>深访率：进入店铺深度访问的顾客及占比(占总体客流)（可以根据定位轨迹或者停留时长判定）</p>
+<pre><code>+ 根据顾客表中的上次来访时间计算得到
++ 对店内客流进行驻店时长比对, 若大于(x)分钟,可视为深访
+</code></pre></li>
+<li><p>新老顾客：一定时间段内首次/两次以上进入店铺的顾客</p>
+<pre><code>+ 若数据库中没有记录, 则为新用户    
++ 若数据库中有记录, 并且该顾客刚刚进入店铺(驻店时长为0),则为老用户
+</code></pre></li>
+</ul>
+<ul>
+<li><p>面向单个客户：<br>统计结果应与mac地址一起存入结果表中<br>X轴为数据, Y轴为人数</p>
+<ul>
+<li><p>来访周期：进入店铺或区域的顾客距离上次来店的间隔</p>
+<pre><code>+ 根据顾客表中的上次来访时间计算得到
++ 若来访周期为0: 
+    - 顾客已经在店内停留了一段时间
+    - 新顾客
++ 若来访周期不为0:
+    - 顾客刚刚入店, 驻店时长必为0
++ 显示结果时, 显示结果表中所有不为0的来访周期, 并可得到来访次数,如:
+    来访周期: 100,0,0,0,0,200,0
+    则近期来访两次, 周期分别为100,200
+</code></pre></li>
+<li><p>驻店时长：进入店铺的顾客在店内的停留时长</p>
+<pre><code>+ 取出目标mac的所有记录, 取近似
++ 若驻店时长为0:
+    - 视为刚刚入店
++ 显示结果时, 根据来访周期, 来选择显示的驻店时长,如:
+    来访周期: 100, 0, 0, 0, 0,200, 0
+    驻店时长:     0,10,20,30,40,  0,10
+    则近期来放两次,驻店时长为40,10
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>顾客活跃度：按顾客距离上次来访间隔,划分为不同活跃度<pre><code>（高活跃度、中活跃度、低活跃度、沉睡活跃度）
++ 按顾客距离上次来访间隔,划分为不同活跃度
++ 显示结果时, 显示结果表中最后一次活跃度
+</code></pre></li>
+</ul>
+<h2 id="设计系统时遇到的问题"><a href="#设计系统时遇到的问题" class="headerlink" title="设计系统时遇到的问题:"></a>设计系统时遇到的问题:</h2><ul>
+<li><p>Hmaster挂掉问题：<a href="http://www.cnblogs.com/yueweimian/p/6183264.html" target="_blank" rel="external">http://www.cnblogs.com/yueweimian/p/6183264.html</a> 总结：log是个好东西</p>
+<ul>
+<li>create 显示表已存在问题：<a href="http://blog.csdn.net/xiaoyancj/article/details/52702696" target="_blank" rel="external">http://blog.csdn.net/xiaoyancj/article/details/52702696</a></li>
+<li>HDFS中需要删除的目录：hadoop@localhost:/usr/local/hbase/logs$ hdfs dfs -rm -f -r /.tmp /MasterProcWALs /WALs /archive /data /hbase.id /hbase.version /oldWALs</li>
+</ul>
+</li>
+<li><p>thrift TSocket read 0 bytes问题：需要关闭hbase shell进程</p>
+</li>
+<li><p>cp: omitting directory 问题：cp -R</p>
+</li>
+<li><p>如何将python, help() 的内容导出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">import</span> os  </div><div class="line">	<span class="keyword">import</span> sys  </div><div class="line">	out = sys.stdout  </div><div class="line">	sys.stdout = open(<span class="string">"help.txt"</span>, <span class="string">"w"</span>)  </div><div class="line">	help(client)</div><div class="line">	sys.stdout.close()  </div><div class="line">	sys.stdout = out  </div><div class="line">```	</div><div class="line">	</div><div class="line"> -  python thrift 如何获取多版本的值</div><div class="line">    见Hbase Thrift文档 getVer()</div><div class="line">	</div><div class="line"> -  如何将结构化数据按某一列聚类:</div><div class="line">```python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>input = [(<span class="string">'11013331'</span>, <span class="string">'KAT'</span>), (<span class="string">'9085267'</span>, <span class="string">'NOT'</span>), (<span class="string">'5238761'</span>, <span class="string">'ETH'</span>), (<span class="string">'5349618'</span>, <span class="string">'ETH'</span>), (<span class="string">'11788544'</span>, <span class="string">'NOT'</span>), (<span class="string">'962142'</span>, <span class="string">'ETH'</span>), (<span class="string">'7795297'</span>, <span class="string">'ETH'</span>), (<span class="string">'7341464'</span>, <span class="string">'ETH'</span>), (<span class="string">'9843236'</span>, <span class="string">'KAT'</span>), (<span class="string">'5594916'</span>, <span class="string">'ETH'</span>), (<span class="string">'1550003'</span>, <span class="string">'ETH'</span>)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>res = defaultdict(list)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> v, k <span class="keyword">in</span> input: </div><div class="line">		res[k].append(v)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[&#123;<span class="string">'type'</span>:k, <span class="string">'items'</span>:v&#125; <span class="keyword">for</span> k,v <span class="keyword">in</span> res.items()]</div><div class="line">[&#123;<span class="string">'items'</span>: [<span class="string">'9085267'</span>, <span class="string">'11788544'</span>], <span class="string">'type'</span>: <span class="string">'NOT'</span>&#125;, &#123;<span class="string">'items'</span>: [<span class="string">'5238761'</span>, <span class="string">'5349618'</span>, <span class="string">'962142'</span>, <span class="string">'7795297'</span>, <span class="string">'7341464'</span>, <span class="string">'5594916'</span>, <span class="string">'1550003'</span>], <span class="string">'type'</span>: <span class="string">'ETH'</span>&#125;, &#123;<span class="string">'items'</span>: [<span class="string">'11013331'</span>, <span class="string">'9843236'</span>], <span class="string">'type'</span>: <span class="string">'KAT'</span>&#125;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>定时任务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">crontab -e</div><div class="line">*/2 * * * * echo “Hello World.” &gt;&gt; /home/HelloWorld.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu 下安装 Mysql-Python 且找不到 mysql_config 的解决办法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-mysqldb</div></pre></td></tr></table></figure>
+</li>
+<li><p>Python如何将数组拆分为多个参数传入函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(*argv)</span>:</span></div><div class="line">    <span class="keyword">return</span></div><div class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line">func(*a) == func(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>输出百分数的正确做法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">"入店率: %s%%"</span> % (<span class="number">100</span> * len(set(result[<span class="number">2</span>]))/len(set(result[<span class="number">1</span>])))</div></pre></td></tr></table></figure>
+</li>
+<li><p>java版本切换:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update -alternatives  --config java update -alternatives  - -config javac</div></pre></td></tr></table></figure>
+</li>
+<li><p>XMLHttpRequest 发出POST请求前，需要</p>
+</li>
+</ul>
+<p>·<br>         xmlhttp.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);<br>    否则将会乱码</p>
+<ul>
+<li>Django 的CSRF防护( 会引起访问400错误 ), 在view函数前加上 @csrf_exempt 装饰器可解决</li>
+</ul>
+<h2 id="完整代码及运行环境："><a href="#完整代码及运行环境：" class="headerlink" title="完整代码及运行环境："></a>完整代码及运行环境：</h2><p><a href="http://github.com/rockmeroll/ShopKeeper" target="_blank" rel="external">ShopKeeper-Github</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/14/Thrift Hbase 完整文档(Python)/" rel="next" title="Thrift Hbase 完整文档(Python)">
+                <i class="fa fa-chevron-left"></i> Thrift Hbase 完整文档(Python)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="rockmeroll" />
+          <p class="site-author-name" itemprop="name">rockmeroll</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个无趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2017软件杯A组B题-基于Wifi探针的商业大数据分析"><span class="nav-number">1.</span> <span class="nav-text">2017软件杯A组B题  - 基于Wifi探针的商业大数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计系统时的一些要点"><span class="nav-number">1.1.</span> <span class="nav-text">设计系统时的一些要点:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖包"><span class="nav-number">1.2.1.</span> <span class="nav-text">依赖包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据表结构"><span class="nav-number">1.3.</span> <span class="nav-text">数据表结构:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求指标的算法"><span class="nav-number">1.4.</span> <span class="nav-text">要求指标的算法:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计系统时遇到的问题"><span class="nav-number">1.5.</span> <span class="nav-text">设计系统时遇到的问题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整代码及运行环境："><span class="nav-number">1.6.</span> <span class="nav-text">完整代码及运行环境：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rockmeroll</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
