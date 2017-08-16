@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="一个无趣的人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://rockmeroll.cn/tags/index.html">
+<meta name="description" content="英语水平渣, 凑合着看看吧…gradle工具命令行下的选项信息 USAGE: gradle [option...] [task...]  -?, -h, --help          帮助信息。 -a, --no-rebuild        不重建项目依赖关系。 -b, --build-file        指定build.gradle文件 --build-cache           使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle 命令行选项 （手翻）">
+<meta property="og:url" content="http://rockmeroll.cn/2017/08/16/Gradle 命令行选项 （手翻）/index.html">
 <meta property="og:site_name" content="RM&#39;s Blog">
-<meta property="og:description" content="一个无趣的人">
-<meta property="og:updated_time" content="2017-05-05T13:09:25.223Z">
+<meta property="og:description" content="英语水平渣, 凑合着看看吧…gradle工具命令行下的选项信息 USAGE: gradle [option...] [task...]  -?, -h, --help          帮助信息。 -a, --no-rebuild        不重建项目依赖关系。 -b, --build-file        指定build.gradle文件 --build-cache           使">
+<meta property="og:updated_time" content="2017-08-16T09:29:28.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="一个无趣的人">
+<meta name="twitter:title" content="Gradle 命令行选项 （手翻）">
+<meta name="twitter:description" content="英语水平渣, 凑合着看看吧…gradle工具命令行下的选项信息 USAGE: gradle [option...] [task...]  -?, -h, --help          帮助信息。 -a, --no-rebuild        不重建项目依赖关系。 -b, --build-file        指定build.gradle文件 --build-cache           使">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://rockmeroll.cn/tags/"/>
+  <link rel="canonical" href="http://rockmeroll.cn/2017/08/16/Gradle 命令行选项 （手翻）/"/>
 
 
 
 
 
-  <title>标签 | RM's Blog</title>
+  <title>Gradle 命令行选项 （手翻） | RM's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,25 +263,188 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">标签</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://rockmeroll.cn/2017/08/16/Gradle 命令行选项 （手翻）/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rockmeroll">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RM's Blog">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            暂无标签
-        </div>
-        <div class="tag-cloud-tags">
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Gradle 命令行选项 （手翻）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T17:27:00+08:00">
+                2017-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>英语水平渣, 凑合着看看吧…gradle工具命令行下的选项信息</p>
+<pre><code>USAGE: gradle [option...] [task...]
+
+-?, -h, --help          帮助信息。
+-a, --no-rebuild        不重建项目依赖关系。
+-b, --build-file        指定build.gradle文件
+--build-cache           使用Gradle构建缓存.Gradle将尝试复用以前版本的build结果. [incubating]
+-c, --settings-file     指定setting.gradle文件
+--configure-on-demand   仅配置必要的项目, Gradle将尝试缩减大型项目的配置时间 [incubating]
+--console               指定输出类型,值为&quot;plain&quot;，&quot;auto&quot;（默认）或&quot;rich&quot;。
+--continue              在一个Task失败后继续执行其他(不依赖失败Task的)Task.
+-D, --system-prop       设置JVM的系统属性(例如-Dmyprop = myvalue).
+-d, --debug             Debug模式(包括普通堆栈跟踪).
+--daemon                使用Gradle守护程序运行构建.
+--foreground            在前台启动Gradle守护进程. [incubating]
+-g, --gradle-user-home  指定Gradle用户主目录.
+--gui                   启动Gradle GUI.
+-I, --init-script       指定初始化脚本.
+-i, --info              设定日志等级为info.
+--include-build         包含指定的构建[incubating]
+-m, --dry-run           不运行任何task运行构建.
+--max-workers           配置Gradle的最大并发数。[incubating]
+--no-build-cache        禁用Gradle构建缓存. [incubating]
+--no-daemon             禁用Gradle守护程序进行构建.
+--no-scan               禁用创建构建扫描.(https://gradle.com/scans) [incubating]
+--offline               在不访问网络资源的情况下执行构建.
+-P, --project-prop      为构建脚本设置项目属性 (如-Pmyprop=myvalue).
+-p, --project-dir       指定Gradle的起始目录, 默认为当前目录.
+--parallel              并行构建项目,Gradle将尝使用最佳的线程数量. [incubating]
+--profile               配置构建文件的执行时间,并在&lt;build_dir&gt;/reports/profile目录中生成日志.
+--project-cache-dir     指定项目缓存目录。 在根项目目录中默认为.gradle。
+-q, --quiet             只显示Error日志.
+--recompile-scripts     强制进行重新构建.
+--refresh-dependencies  刷新依赖状态.
+--rerun-tasks           忽略先前缓存的Task结果.
+-S, --full-stacktrace   输出所有异常的完整（非常详细）的堆栈跟踪.
+-s, --stacktrace        打印出所有异常的堆栈跟踪.
+--scan                  创建构建扫描。 如果构建扫描插件尚未应用，Gradle会发出警告。（https://gradle.com/scans）[incubating]
+--status                显示运行中和最近停止的Gradle守护进程.
+--stop                  停止正在运行的Gradle守护进程.
+-t, --continuous        启用连续构建。 当Task文件输入更改时，Gradle不会退出, 并重新执行任务。 [incubating]
+-u, --no-search-upward  不在父文件夹中搜索settings.gradle文件。
+-v, --version           输出版本信息.
+-w, --warn              设置日志等级为warn.
+-x, --exclude-task      指定要从构建中排除的Task.
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/16/RabbitMQ + HAproxy 集群配置与负载均衡/" rel="next" title="RabbitMQ + HAproxy 集群配置与负载均衡">
+                <i class="fa fa-chevron-left"></i> RabbitMQ + HAproxy 集群配置与负载均衡
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/16/Gradle安装配置与使用以及打包Docker镜像/" rel="prev" title="Gradle安装配置与使用以及打包Docker镜像">
+                Gradle安装配置与使用以及打包Docker镜像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -480,6 +643,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
