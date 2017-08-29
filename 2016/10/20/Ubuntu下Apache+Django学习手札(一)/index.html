@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="RM&#39;s Blog">
 <meta property="og:description" content="记录一下 Ubuntu 下面学习部署 django 的过程：想一想自己开始用Python已经两年了，一直想学习一下PythonWeb，由于懒癌缠身一直拖着，终于下定决心，用了一周时间，粗略的学习了Django框架。 服务器的环境是：UbuntuKylin14.04 LTS + python3.4.3 + Django1.10.2 + Mysql5.5.50">
 <meta property="og:image" content="http://rockmeroll.cn/pic/201610201707.png">
-<meta property="og:updated_time" content="2017-05-06T03:04:11.643Z">
+<meta property="og:updated_time" content="2017-08-29T01:13:08.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu下Apache+Django学习手札 (一)">
 <meta name="twitter:description" content="记录一下 Ubuntu 下面学习部署 django 的过程：想一想自己开始用Python已经两年了，一直想学习一下PythonWeb，由于懒癌缠身一直拖着，终于下定决心，用了一周时间，粗略的学习了Django框架。 服务器的环境是：UbuntuKylin14.04 LTS + python3.4.3 + Django1.10.2 + Mysql5.5.50">
@@ -372,7 +372,7 @@
 <p>访问本机的8000端口，可以看到令人愉悦的淡蓝色页面(官方原话)”It Works!”<br> <img src="http://rockmeroll.cn/pic/201610201707.png" alt="It works!"></p>
 </li>
 <li><p>Apache及插件:<br>利用Apache启动Django站点需要安装插件Wsgi： </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 安装 apache </div><div class="line"><span class="meta">$</span> apt-get install apache2</div><div class="line"><span class="meta">#</span> 启动 apache</div><div class="line"><span class="meta">$</span> service apache2 start</div><div class="line"><span class="meta">#</span> 安装 mod_wsgi  </div><div class="line"><span class="meta">$</span> apt-get install libapache2-mod-wsgi-py3</div><div class="line"><span class="meta">#</span> 启动 mod_wsgi </div><div class="line"><span class="meta">$</span> a2enmod wsgi</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 安装 apache </div><div class="line"><span class="meta">$</span> apt-get install apache2</div><div class="line"><span class="meta">#</span> 启动 apache</div><div class="line"><span class="meta">$</span> service apache2 start</div><div class="line"><span class="meta">#</span> 安装 mod\_wsgi  </div><div class="line"><span class="meta">$</span> apt-get install libapache2-mod-wsgi-py3</div><div class="line"><span class="meta">#</span> 启动 mod\_wsgi </div><div class="line"><span class="meta">$</span> a2enmod wsgi</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <pre><code>到这为止基本环境的搭建就完成了。
