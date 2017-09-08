@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081417.jpg">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081418.jpg">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081419.jpg">
-<meta property="og:updated_time" content="2017-09-08T06:49:13.665Z">
+<meta property="og:updated_time" content="2017-09-08T06:51:25.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rancher下安装kubernetes">
 <meta name="twitter:description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker12345sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.r">
@@ -422,7 +422,8 @@
 <p><img src="http://okdlluqr1.bkt.clouddn.com/201709081417.jpg" alt="问题现象"> </p>
 <p>对这两张图，其实已经能够很明显的看出区别，有问题的kubelet在解析rancher-metadata之前，向nscd请求的解析结果，nscd返回了unkown host，所以就没有进行dns解析。而正常的kubelet节点并没有找到nscd.socket，而后直接请求dns进行解析rancher-metadata地址。<br>经过以上的分析，基本上断定问题出在nscd上，那么为什么同样版本的rancher-k8s，一个有nscd socket，而另一个却没有，仔细看一下kubelet的compose定义：</p>
 <p><img src="http://okdlluqr1.bkt.clouddn.com/201709081418.jpg" alt="问题现象"> </p>
-<p>kubelet启动时候映射了主机目录/var/run，那么基本可以得知nscd来自于系统。检查一下有问题的kubelet节点的系统，果然会发现安装了nscd服务（服   务名为unscd）。<br>用比较暴力的方案证明一下分析过程，直接删除nscd socket文件，这时候你会发现kubelet服务正常启动了，rancher-metadata也可以访问了。<br>回过头来思考一下原理，为什么ping/curl这种会先去nscd中寻找解析结果呢，而dig/nslookup则不受影响。ping/curl这种在解析地址前都会先读取/etc/nsswitch.conf，这是由于其底层均引用了glibc， 由nsswitch调度，最终指引ping/curl先去找nscd服务。nscd服务是一个name services cache服务，很多解析结果他会缓存，而我们知道这个nscd是运行在Host上的，Host上是不能直接访问rancher-metadata这个服务名，所以kubelet容器中就无法访问rancher-metadata。<br>其他解决方案<br>其实我们也未必要如此暴力删除nscd，nscd也有一些配置，我们可以修改一下以避免这种情况，可以disable hosts cache，这样nscd中便不会有相应内容的缓存，所以解析rancher-metadata并不会出现unknown host，而是继续向dns nameserver申请解析地址，这样也不会有问题。</p>
+<p>kubelet启动时候映射了主机目录/var/run，那么基本可以得知nscd来自于系统。检查一下有问题的kubelet节点的系统，果然会发现安装了nscd服务（服   务名为unscd）。<br>用比较暴力的方案证明一下分析过程，直接删除nscd socket文件，这时候你会发现kubelet服务正常启动了，rancher-metadata也可以访问了。<br>回过头来思考一下原理，为什么ping/curl这种会先去nscd中寻找解析结果呢，而dig/nslookup则不受影响。ping/curl这种在解析地址前都会先读取/etc/nsswitch.conf，这是由于其底层均引用了glibc， 由nsswitch调度，最终指引ping/curl先去找nscd服务。nscd服务是一个name services cache服务，很多解析结果他会缓存，而我们知道这个nscd是运行在Host上的，Host上是不能直接访问rancher-metadata这个服务名，所以kubelet容器中就无法访问rancher-metadata。</p>
+<p><strong>其他解决方案</strong><br>其实我们也未必要如此暴力删除nscd，nscd也有一些配置，我们可以修改一下以避免这种情况，可以disable hosts cache，这样nscd中便不会有相应内容的缓存，所以解析rancher-metadata并不会出现unknown host，而是继续向dns nameserver申请解析地址，这样也不会有问题。</p>
 <p><img src="http://okdlluqr1.bkt.clouddn.com/201709081419.jpg" alt="问题现象"> </p>
 <p>重新添加kubernetes无法显示dashborad<br>原因：未完全删除</p>
 <p>解决办法：<a href="http://rancher.com/docs/rancher/v1.5/en/kubernetes/deleting/" target="_blank" rel="external">http://rancher.com/docs/rancher/v1.5/en/kubernetes/deleting/</a></p>
