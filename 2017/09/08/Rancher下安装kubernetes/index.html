@@ -90,13 +90,13 @@
 
 
 
-<meta name="description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker1234sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.re">
+<meta name="description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker12345sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.r">
 <meta name="keywords" content="Linux,Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rancher下安装kubernetes">
 <meta property="og:url" content="http://rockmeroll.cn/2017/09/08/Rancher下安装kubernetes/index.html">
 <meta property="og:site_name" content="RM&#39;s Blog">
-<meta property="og:description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker1234sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.re">
+<meta property="og:description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker12345sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.r">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081401.png">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081402.png">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081403.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081417.jpg">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081418.jpg">
 <meta property="og:image" content="http://okdlluqr1.bkt.clouddn.com/201709081419.jpg">
-<meta property="og:updated_time" content="2017-09-08T06:45:43.796Z">
+<meta property="og:updated_time" content="2017-09-08T06:49:13.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rancher下安装kubernetes">
-<meta name="twitter:description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker1234sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.re">
+<meta name="twitter:description" content="Docker安装支持的docker版本：  在这里我们选择安装docker1.12.3 删除安装过的docker12345sudo yum remove docker \    docker-common \    docker-selinux \    docker-engine 删除之前安装docker的yum源1sudo rm -rf /etc/yum.repos.d/docker-ce.r">
 <meta name="twitter:image" content="http://okdlluqr1.bkt.clouddn.com/201709081401.png">
 
 
@@ -381,7 +381,7 @@
       
         <h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><h3 id="支持的docker版本："><a href="#支持的docker版本：" class="headerlink" title="支持的docker版本："></a>支持的docker版本：</h3><p><img src="http://okdlluqr1.bkt.clouddn.com/201709081401.png" alt="支持的docker版本"> </p>
 <p>在这里我们选择安装<strong>docker1.12.3</strong></p>
-<h3 id="删除安装过的docker"><a href="#删除安装过的docker" class="headerlink" title="删除安装过的docker"></a>删除安装过的docker</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo yum remove docker \</div><div class="line">    docker-common \</div><div class="line">    docker-selinux \</div><div class="line">    docker-engine</div></pre></td></tr></table></figure>
+<h3 id="删除安装过的docker"><a href="#删除安装过的docker" class="headerlink" title="删除安装过的docker"></a>删除安装过的docker</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo yum remove docker \</div><div class="line">    docker-common \</div><div class="line">    docker-selinux \</div><div class="line">    docker-engine</div></pre></td></tr></table></figure>
 <h3 id="删除之前安装docker的yum源"><a href="#删除之前安装docker的yum源" class="headerlink" title="删除之前安装docker的yum源"></a>删除之前安装docker的yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo rm -rf /etc/yum.repos.d/docker-ce.repo</div></pre></td></tr></table></figure>
 <h3 id="安装docker1-12-3的yum源"><a href="#安装docker1-12-3的yum源" class="headerlink" title="安装docker1.12.3的yum源"></a>安装docker1.12.3的yum源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo tee /etc/yum.repos.d/docker.repo &lt;&lt;-'EOF'</div><div class="line">[dockerrepo]</div><div class="line">name=Docker Repository</div><div class="line">baseurl=https://yum.dockerproject.org/repo/main/centos/7/</div><div class="line">enabled=1</div><div class="line">gpgcheck=1</div><div class="line">gpgkey=https://yum.dockerproject.org/gpg</div><div class="line">EOF</div></pre></td></tr></table></figure>
 <h3 id="查看docker列表"><a href="#查看docker列表" class="headerlink" title="查看docker列表"></a>查看docker列表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum list docker-engine.x86_64  --showduplicates | sort -r</div></pre></td></tr></table></figure>
